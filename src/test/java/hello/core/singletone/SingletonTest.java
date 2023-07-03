@@ -1,6 +1,7 @@
 package hello.core.singletone;
 
 import hello.core.AppConfig;
+import hello.core.Order.OrderService;
 import hello.core.member.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -34,14 +35,15 @@ public class SingletonTest {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MemberService memberService1 = ac.getBean("memberService", MemberService.class);
-        MemberService memberService2 = ac.getBean("memberService", MemberService.class);
+        OrderService orderService1 = ac.getBean("orderService", OrderService.class);
+
 
         System.out.println("singletonTest1 = " + memberService1);
-        System.out.println("singletonTest2 = " + memberService2);
+        System.out.println("singletonTest2 = " + orderService1);
 
         // same ==
         // equal equals
-        assertThat(memberService1).isSameAs(memberService2);
+        assertThat(memberService1).isSameAs(orderService1);
 
 
     }
